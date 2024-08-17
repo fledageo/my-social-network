@@ -7,16 +7,14 @@ import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from 
 import { MdFileUpload } from "react-icons/md";
 import { TbPhotoSearch } from "react-icons/tb";
 import { Feed } from '../../../components/UserPostsFeed/Feed';
-
+import { BASE,INIT_PROFILE_IMG } from '../../../helpers/default';
 
 
 export const Profile = () => {
     const [imgDropdown, setImgDropdown] = useState<Boolean>(false)
-    const [gallery,setGallery] = useState()
 
     const { account, setAccount } = useOutletContext<IContext>();
     const photo = useRef<HTMLInputElement | null>(null);
-    const BASE = 'http://localhost:4002';
 
     const photoUpload = () => {
         const file = photo.current?.files?.[0];
@@ -36,15 +34,6 @@ export const Profile = () => {
         setImgDropdown(state)
     }
     
-    useEffect(() => {
-        getAllPosts()
-        .then(res => {
-            console.log(res.payload)
-        })
-    },[])
-
-    
-
     return (
         <>
             <div className={styles.container}>
@@ -56,7 +45,7 @@ export const Profile = () => {
                         <div className={styles.imgBlock} onClick={() => toggleDropDown(true)} onMouseLeave={() => toggleDropDown(false)}>
                             <div className={styles.imgWrapper}>
                                 <img
-                                    src={`${account.picture ? BASE + account.picture : "../public/init-profile-img.jpeg"}`}
+                                    src={`${account.picture ? BASE + account.picture : INIT_PROFILE_IMG}`}
                                     alt="Profile Image"
                                     className={styles.mainImg} 
                                 />
@@ -106,7 +95,7 @@ export const Profile = () => {
 
                     </div>
                     <div className={styles.block2}>
-                        <Feed/>
+                        <Feed account={account}/>
                     </div>  
                     <div className={styles.block3}>
 

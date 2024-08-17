@@ -33,3 +33,8 @@ export const getAllPosts = async () => {
     const response = await Axios.get('/posts')
     return response.data
 }
+
+export const handlePostUpload = async (form: FormData): Promise<IResponse> => {
+    const response = await Axios.post('/posts', form);
+    return response.data;
+};
