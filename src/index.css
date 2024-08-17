@@ -1,0 +1,32 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.headerContainer{
+    background-color: #7FA1C3;
+    display: flex;
+    justify-content: center;
+    /* position: fixed; */
+    width: 100%;
+    height: 10%;
+}
+.linksWrapper{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+}
+.headerLink{
+    text-decoration: none;
+    font-size: 25px;
+    color: #E2DAD6;
+    font-family: sans-serif;
+}
+.headerBtn{
+    border: none;
+    background: none;
+    font-size: 25px;
+    color: #E2DAD6;
+    cursor: pointer;
+}
