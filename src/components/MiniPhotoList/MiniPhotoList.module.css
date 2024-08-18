@@ -1,0 +1,18 @@
+.showBlock{
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.imgBlock{
+    width: 48%;
+    height: 60px;
+    margin: 2px 0;
+}
+.imgBlock:hover{
+    opacity: 0.8;
+}
+.postImg{
+    height: 100%;
+    width: 100%;
+}

@@ -6,16 +6,24 @@
     justify-content: center;
 }
 .actionsBlock{
-    width: 60%;
-    height: 100px;
     display: flex;
-    justify-content: space-between;
-    padding: 20px;
-
+    width: 100%;
+    flex-direction: column;
+    background-color: #F5EDED;
+    margin: 20px 0;
+    padding: 20px 20px;
+    border-radius: 10px;
+}
+.buttonsBlock{
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 60px;
+    margin-top: 10px;
 }
 .action{
-    width: 100px;
-    min-width: 70px;
+    width: 50px;
+    min-width: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,28 +31,14 @@
     border-radius: 15px;
 }
 .action:hover{
-    background-color: #F5EDED;
+    background-color: rgba(127, 161, 195,0.5);
 }
-
-/* posts */
-.showPostsBlock{
-    height: 100%;
-    padding: 30px;
-}
-.postBlock{
-    border-radius: 10px;
-    width: 100%;
-    padding: 20px;
-    background-color: #F5EDED;
-    margin-bottom: 50px;
-}
-
-.userInfoBlock{
+.watsNewBlock{
     display: flex;
-    align-items: center;
-    font-family: sans-serif;
-    font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+}
+.newPostBtn{
+    width: calc(100% - 50px);
 }
 .userImgBlock{
     overflow: hidden;
@@ -59,11 +53,4 @@
 .userImg{
     height: 100%;
 }
-
-.contentImg{
-    width: 100%;
-}
-.contentText{
-    margin-bottom: 10px;
-    font-family: sans-serif;
-}
+/* posts */

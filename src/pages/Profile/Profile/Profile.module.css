@@ -24,6 +24,8 @@
     justify-content: center;
     position: relative;
     min-width: 200px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .imgBlock{
@@ -104,8 +106,12 @@
     font-weight: 700;
     text-align: center;
 }
-
-
+.miniPhotoList{
+    margin-top: 50px;
+}
+.photosText{
+    font-family: sans-serif;
+}
 /* Block-2 */
 
 .block2{

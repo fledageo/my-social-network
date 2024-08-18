@@ -1,20 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from "./Profile.module.css"
-import { useOutletContext } from 'react-router-dom';
-import { IContext } from '../../../helpers/types';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import { IContext, IPost } from '../../../helpers/types';
 import { getAllPosts, handleUpload } from '../../../helpers/api';
-import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, List, ListItem, ListItemButton, ListItemIcon } from '@mui/material';
 import { MdFileUpload } from "react-icons/md";
 import { TbPhotoSearch } from "react-icons/tb";
 import { Feed } from '../../../components/UserPostsFeed/Feed';
-import { BASE,INIT_PROFILE_IMG } from '../../../helpers/default';
-
+import { BASE, INIT_PROFILE_IMG } from '../../../helpers/default';
+import { MiniPhotoList } from '../../../components/MiniPhotoList/MiniPhotoList';
 
 export const Profile = () => {
     const [imgDropdown, setImgDropdown] = useState<Boolean>(false)
-
+    const [posts, setPosts] = useState<IPost[]>([]);
+    const navigate = useNavigate()
     const { account, setAccount } = useOutletContext<IContext>();
     const photo = useRef<HTMLInputElement | null>(null);
+
+    useEffect(() => {
+        getAllPosts().then((response) => {
+            setPosts(response.payload as IPost[]);
+        });
+    }, []);
 
     const photoUpload = () => {
         const file = photo.current?.files?.[0];
@@ -33,12 +40,13 @@ export const Profile = () => {
     const toggleDropDown = (state: Boolean) => {
         setImgDropdown(state)
     }
-    
+
+
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.coverSection}>
-                
+
                 </div>
                 <div className={styles.mainSection}>
                     <div className={styles.block1}>
@@ -47,7 +55,7 @@ export const Profile = () => {
                                 <img
                                     src={`${account.picture ? BASE + account.picture : INIT_PROFILE_IMG}`}
                                     alt="Profile Image"
-                                    className={styles.mainImg} 
+                                    className={styles.mainImg}
                                 />
 
                                 <Box className={`${styles.imgDropMenu} ${imgDropdown ? styles.imgDropdownOpen : ""}`}>
@@ -88,15 +96,19 @@ export const Profile = () => {
                             </div>
                         </div>
 
-                        <div className={styles.miniGallery}>
-
-                        </div>
+                        {
+                            posts.length !== 0 ? 
+                            <div className={styles.miniPhotoList} onClick={() => navigate("/profile/photos")}>
+                                <span className={styles.photosText}>Photos</span>
+                                <MiniPhotoList posts={posts} />
+                            </div> : ""
+                        }
 
 
                     </div>
                     <div className={styles.block2}>
-                        <Feed account={account}/>
-                    </div>  
+                        <Feed account={account} />
+                    </div>
                     <div className={styles.block3}>
 
                     </div>

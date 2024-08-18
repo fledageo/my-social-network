@@ -1,0 +1,24 @@
+.container{
+    margin-left: 100px;
+    width: calc(100% - 100px);
+    height: 100vh;
+    padding: 50px;
+}
+.accordionsBlock{
+    width: 400px;
+}
+
+.actionWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.statusText{
+    font-weight: 600;
+}
+.changeBlock{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

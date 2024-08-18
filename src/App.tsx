@@ -5,6 +5,7 @@ import { Login } from "./pages/Login/Login"
 import { Layout } from "./pages/Profile/Layout"
 import { Profile } from "./pages/Profile/Profile/Profile"
 import { Settings } from "./pages/Profile/Settings/Settings"
+import { Photos } from "./pages/Profile/Photos/Photos"
 
 function App() {
   const routes = createBrowserRouter([
@@ -31,6 +32,10 @@ function App() {
         {
           path:"settings",
           element:<Settings/>
+        },
+        {
+          path:"photos",
+          element:<Photos/>
         }
       ]
     }

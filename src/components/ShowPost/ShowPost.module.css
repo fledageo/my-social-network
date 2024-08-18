@@ -1,0 +1,18 @@
+.showPostsBlock{
+    height: 100%;
+    padding: 30px;
+}
+.postBlock{
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px;
+    background-color: #F5EDED;
+    margin-bottom: 50px;
+}
+.contentImg{
+    width: 100%;
+}
+.contentText{
+    margin-bottom: 10px;
+    font-family: sans-serif;
+}

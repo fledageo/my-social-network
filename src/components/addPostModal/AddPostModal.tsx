@@ -5,16 +5,17 @@ import { IUser } from '../../helpers/types'
 import { BASE, INIT_PROFILE_IMG } from '../../helpers/default'
 import { RiImageAddFill } from "react-icons/ri";
 import { Modal, Box } from '@mui/material';
+import { UserInfo } from '../UserInfo/UserInfo'
 
 interface IProps {
     account: IUser
     newPostModal: boolean
     togglePostModal: (state: boolean) => void
-    handleAddNewPost:(form:FormData) => void
+    handleAddNewPost: (form: FormData) => void
 }
 
 
-export const AddPostModal = ({ account, newPostModal, togglePostModal,handleAddNewPost }: IProps) => {
+export const AddPostModal = ({ account, newPostModal, togglePostModal, handleAddNewPost }: IProps) => {
     const [text, setText] = useState<string>("")
     const [imageSrc, setImageSrc] = useState<string | null>(null)
     const inputFile = useRef<HTMLInputElement | null>(null)
@@ -25,7 +26,7 @@ export const AddPostModal = ({ account, newPostModal, togglePostModal,handleAddN
             const form = new FormData()
             form.append('photo', file)
             form.append('content', text)
-            
+
             handleAddNewPost(form)
         }
     }
@@ -57,18 +58,11 @@ export const AddPostModal = ({ account, newPostModal, togglePostModal,handleAddN
                             <Divider />
                             <div className={styles.newPostBlockWrapper}>
                                 <div className={styles.newPostBlock}>
-                                    <div className={styles.userInfoBlock}>
-                                        <div className={styles.imgBlock}>
-                                            <img
-                                                src={`${account.picture ? BASE + account.picture : INIT_PROFILE_IMG}`}
-                                                alt="profile image"
-                                                className={styles.img}
-                                            />
-                                        </div>
-                                        <div className={styles.nameBlock}>
-                                            <span>{account.name} {account.surname}</span>
-                                        </div>
+
+                                    <div className={styles.userInfoWrapper}>
+                                        <UserInfo account={account} />
                                     </div>
+
                                     <div className={styles.actionBlock}>
                                         <TextField
                                             multiline

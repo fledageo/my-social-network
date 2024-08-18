@@ -4,10 +4,10 @@ import { List, ListItem, ListItemIcon, ListItemText, ListItemButton } from '@mui
 import { IoPerson } from "react-icons/io5";
 import { HiOutlinePhoto } from "react-icons/hi2";
 import { IoSettingsOutline } from "react-icons/io5";
-
+import { useNavigate } from 'react-router-dom';
 export const Sidebar = () => {
     const [isOpen, setIsOpen] = useState<Boolean>(false)
-
+    const navigate = useNavigate()
     const toggleSidebar = (state: boolean) => {
         setIsOpen(state)
     }
@@ -22,7 +22,7 @@ export const Sidebar = () => {
             <nav>
                 <List>
                     <ListItem>
-                        <ListItemButton className={styles.listBtn}>
+                        <ListItemButton onClick={() => navigate("/profile")}>
                             <ListItemIcon className={styles.iconWrapper}>
                                 <IoPerson size={30} />
                             </ListItemIcon>
@@ -32,7 +32,7 @@ export const Sidebar = () => {
                         </ListItemButton>
                     </ListItem>
                     <ListItem>
-                        <ListItemButton>
+                        <ListItemButton onClick={() => navigate("/profile/photos")}>
                             <ListItemIcon className={styles.iconWrapper}>
                                 <HiOutlinePhoto size={30} />
                             </ListItemIcon>
@@ -42,7 +42,7 @@ export const Sidebar = () => {
                         </ListItemButton>
                     </ListItem>
                     <ListItem>
-                        <ListItemButton>
+                        <ListItemButton onClick={() => navigate("/profile/settings")}>
                             <ListItemIcon className={styles.iconWrapper}>
                                 <IoSettingsOutline size={30} />
                             </ListItemIcon>
