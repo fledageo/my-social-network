@@ -1,0 +1,46 @@
+.container{
+    margin-left: 100px;
+    height: 100vh;
+    width: 100% - 100px;
+    padding: 20px;
+}
+.infoWrapper{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.requestBox{
+    display: flex;
+    align-items: center;
+    background-color: #F5EDED;
+    min-width: 200px;
+    width: 400px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.actionsBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.actionBtn{
+    border: none;
+    background: none;
+    cursor: pointer;   
+    transition: 0.2s; 
+    border-radius: 5px;
+    text-align: center;
+}
+.actionBtn:active{
+    transform: scale(1.3);
+}
+

@@ -17,8 +17,6 @@
     font-weight: 600;
 }
 .changeBlock{
-    height: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
 }

@@ -9,6 +9,7 @@ import { TbPhotoSearch } from "react-icons/tb";
 import { Feed } from '../../../components/UserPostsFeed/Feed';
 import { BASE, INIT_PROFILE_IMG } from '../../../helpers/default';
 import { MiniPhotoList } from '../../../components/MiniPhotoList/MiniPhotoList';
+import { SearchBlock } from '../../../components/SearchBlock/SearchBlock';
 
 export const Profile = () => {
     const [imgDropdown, setImgDropdown] = useState<Boolean>(false)
@@ -110,7 +111,11 @@ export const Profile = () => {
                         <Feed account={account} />
                     </div>
                     <div className={styles.block3}>
-
+                        <div className={styles.block3Container}>
+                            <div className={styles.block3Wrapper}>
+                                <SearchBlock/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,15 +3,19 @@ import styles from "./Settings.module.css"
 import { Accordion, AccordionSummary, AccordionDetails, Button, TextField } from '@mui/material'
 import { GoChevronDown } from "react-icons/go";
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { IContext } from '../../../helpers/types';
-import { handlePrivacyStatus, handleChangePassword } from '../../../helpers/api';
+import { IChangeLoginData, IContext } from '../../../helpers/types';
+import { handlePrivacyStatus, handleChangePassword, handleChangeLogin } from '../../../helpers/api';
 import { CiUnlock } from "react-icons/ci";
 import { CiLock } from "react-icons/ci";
+
+
 
 
 export const Settings = () => {
   const { account, setAccount } = useOutletContext<IContext>();
   const [error, setError] = useState<string>("");
+  const [changeLoginData, setChangeLoginData] = useState<IChangeLoginData>({ login: "", password: "" })
+
   const [oldPass, setOldPass] = useState<string>("");
   const [newPass, setNewPass] = useState<string>("");
   const navigate = useNavigate();
@@ -25,15 +29,26 @@ export const Settings = () => {
 
   const handlePasswordChange = () => {
     const form = new FormData();
+
     form.append("old", oldPass);
     form.append("newpwd", newPass);
 
     handleChangePassword(form)
-    .then((response) => {
-      console.log(response)
-      // setError("");
-      // navigate("/login");
-    });
+      .then((response) => {
+        navigate("/login");
+      });
+  }
+
+
+  const handleLoginChange = () => {
+
+    handleChangeLogin(changeLoginData)
+      .then(res => {
+        if (res.status != "error") {
+          setChangeLoginData({ login: "", password: "" })
+          navigate("/login");
+        }
+      })
   }
 
   return (
@@ -67,9 +82,30 @@ export const Settings = () => {
               <AccordionDetails>
                 <div className={styles.actionWrapper}>
                   <div className={styles.changeBlock}>
-                    <TextField size="small" label="Old password" variant="outlined" name='old' />
-                    <TextField size="small" label="New password" variant="outlined" name='newpwd' />
-                    <Button variant="outlined" type='submit' onClick={handlePasswordChange}>Change</Button>
+                    <TextField
+                      size="small"
+                      label="Old password"
+                      variant="outlined"
+                      name='old'
+                      type='password'
+                      onChange={(e) => setOldPass(e.target.value)}
+                    />
+                    <TextField
+                      size="small"
+                      label="New password"
+                      variant="outlined"
+                      name='newpwd'
+                      type='password'
+                      sx={{ margin: "20px 0" }}
+                      onChange={(e) => setNewPass(e.target.value)}
+                    />
+                    <Button
+                      variant="outlined"
+                      onClick={handlePasswordChange}
+                      type="submit"
+                    >
+                      Change
+                    </Button>
                   </div>
                 </div>
               </AccordionDetails>
@@ -78,11 +114,37 @@ export const Settings = () => {
               <AccordionSummary
                 expandIcon={<GoChevronDown />}
               >
-                Accordion 1
+                Change Email
               </AccordionSummary>
               <AccordionDetails>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget.
+                <div className={styles.actionWrapper}>
+                  <div className={styles.changeBlock}>
+                    <TextField
+                      size="small"
+                      label="New Email"
+                      variant="outlined"
+                      name='old'
+                      onChange={(e) => setChangeLoginData({ ...changeLoginData, login: e.currentTarget.value })}
+                    />
+                    <TextField
+                      size="small"
+                      label="Password"
+                      variant="outlined"
+                      name='newpwd'
+                      type='password'
+                      onChange={(e) => setChangeLoginData({ ...changeLoginData, password: e.currentTarget.value })}
+                      sx={{ margin: "20px 0" }}
+
+                    />
+                    <Button
+                      variant="outlined"
+                      onClick={handleLoginChange}
+                      type="submit"
+                    >
+                      Change
+                    </Button>
+                  </div>
+                </div>
               </AccordionDetails>
             </Accordion>
           </div>

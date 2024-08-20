@@ -22,7 +22,7 @@ export const Layout = () => {
         logoutUser().then(() => navigate("/login"));
     };
     return account && <>
-        <Sidebar />
+        <Sidebar account={account}/>
         <Outlet context={{ account, setAccount }} />
     </>
 }

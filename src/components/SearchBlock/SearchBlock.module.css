@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: #F5EDED;
+    border-radius: 10px;
+    padding: 10px 25px;
+    min-height: 300px;
+}
+.showFindBlock{
+    width: 100%;
+}
+.showUserBlock{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    transition: 0.2s;
+}
+.showUserBlock:hover{
+    background-color: #c4baba;
+}

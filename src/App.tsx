@@ -6,7 +6,8 @@ import { Layout } from "./pages/Profile/Layout"
 import { Profile } from "./pages/Profile/Profile/Profile"
 import { Settings } from "./pages/Profile/Settings/Settings"
 import { Photos } from "./pages/Profile/Photos/Photos"
-
+import { UserAccount } from "./pages/Profile/UserAccount/UserAccount"
+import { Notifli } from "./pages/Profile/Notifli/Notifli"
 function App() {
   const routes = createBrowserRouter([
     {
@@ -30,12 +31,20 @@ function App() {
           element:<Profile/>
         },
         {
+          path:':id',
+          element:<UserAccount/>
+        },
+        {
           path:"settings",
           element:<Settings/>
         },
         {
           path:"photos",
           element:<Photos/>
+        },
+        {
+          path:"notiflications",
+          element:<Notifli/>
         }
       ]
     }

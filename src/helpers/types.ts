@@ -12,12 +12,20 @@ export interface IUser {
   name: string;
   surname: string;
   login: string;
+  followers: IUser[];
+  following: IUser[];
   password: string;
   picture?: string;
   cover?: string;
-  followers?: IUser[];
-  following?: IUser[];
   isPrivate?: number;
+}
+export interface IAccount extends IUser {
+  posts: IPost[]
+  connection: { following: boolean, followsMe: boolean, requested: boolean }
+}
+export interface IGetRequestsResponse {
+  id:string
+  user:IUser
 }
 
 export interface IResponse {
@@ -41,4 +49,10 @@ export interface IPost {
   title: string;
   picture: string;
   likes: IUser[];
+}
+
+export interface IChangeLoginData{
+  login:string
+  password:string
+  
 }
