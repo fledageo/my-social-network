@@ -1,8 +1,16 @@
 .wrapper{
-    background-color: aquamarine;
+    background-color: #7fa1c382;
     margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 15px;
 }
 .info{
     display: flex;
     align-items: center;
+}
+.commentText{
+    display: flex;
+    word-break: break-all;
+    margin-left: 5px;
+    margin-top: 10px;
 }

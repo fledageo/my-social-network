@@ -14,6 +14,9 @@ export const ShowComment = ({comment}:IProps) => {
                 <Avatar src={BASE + comment.user.picture} sx={{marginRight:"10px"}}/>
                 <span>{comment.user.name} {comment.user.surname}</span>
             </div>
+            <div className={styles.commentText}>
+              <p className={styles.text}>{comment.content}</p>
+            </div>
         </div>
     </div>
   )

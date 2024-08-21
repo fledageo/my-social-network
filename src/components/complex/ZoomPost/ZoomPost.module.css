@@ -1,16 +1,18 @@
-.modalBox{
+.modalBox {
     width: 70%;
     min-width: 700px;
     min-height: 500px;
     height: 70%;
 }
-.wrapper{
+
+.wrapper {
     height: 100%;
     width: 100%;
     display: flex;
     gap: 10px;
 }
-.postBlock{
+
+.postBlock {
     width: 65%;
     overflow: hidden;
     background-color: #F5EDED;
@@ -18,22 +20,33 @@
     border-radius: 15px;
 
 }
-.userInfo{
+
+.userInfo {
     height: 15%;
 }
-.imgWrapper{
-    /* height: 75%; */
-    max-height: 75%;
+
+.imgWrapper {
+    width: 100%;
+    height: 75%;
+    background-color: rgb(161, 159, 159);
     overflow: hidden;
+    position: relative;
 }
-.showInfo{
+
+.showInfo {
     height: 10%;
 
 }
-.ZoomImg{
+
+.ZoomImg {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Ensures the entire image is visible */
+    position: absolute;
 }
-.actionsBlock{
+
+.actionsBlock {
     height: 100%;
     width: 35%;
     display: flex;
@@ -43,28 +56,39 @@
     border-radius: 15px;
     padding: 10px;
 }
-.commentsPart{
-    /* height: 80%; */
+
+.commentsPart {
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
-.actionsPart{
+
+.actionsPart {
     /* height: 20%; */
     width: 100%;
+    padding-top: 10px;
 }
-.iconBtn{
+
+.iconBtn {
     border: none;
     background: none;
     transition: 0.2s;
 }
-.iconBtn:hover{
+
+.iconBtn:hover {
     transform: scale(1.2);
 }
-.fieldWrapper{
+
+.fieldWrapper {
     /* height: 70px; */
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.sendBtn{
+
+.sendBtn {
     margin-left: 10px;
     cursor: pointer;
 }
