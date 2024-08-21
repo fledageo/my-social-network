@@ -112,5 +112,31 @@
     width: 100%;
     min-width: 400px;
     background-color: #F5EDED;
-    height: 500px;
+}
+.showPostsWrapper{
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+.privateTextBlock{
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+.privateTextWrapper{
+    width: 50%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #7FA1C3;
+}
+.ProvateIcon{
+    margin-bottom: 10px;
+}
+.ProvateText{
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }

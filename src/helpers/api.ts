@@ -1,4 +1,4 @@
-import { IChangeLoginData, ILoginFormData, IResponse, ISignupFormData } from "./types";
+import { IChangeLoginData, ICommentPayload, ILoginFormData, IResponse, ISignupFormData } from "./types";
 import axios from "axios";
 const Axios = axios.create({
     baseURL: "http://localhost:4002",
@@ -59,7 +59,7 @@ export const searchUsers = async (text: string): Promise<IResponse> => {
     return response.data
 }
 
-export const getAccount = async (id: string): Promise<IResponse> => {
+export const getAccount = async (id: string | number): Promise<IResponse> => {
     const response = await Axios.get("/account/" + id)
     return response.data
 }
@@ -92,11 +92,26 @@ export const getAllRequests = async (id: number): Promise<IResponse> => {
     return response.data
 }
 
-export const acceptRequest = async(id:string) => {
+export const acceptRequest = async (id: string) => {
     const response = await Axios.patch('/requests/accept/' + id)
     return response.data
 }
-export const declineRequest = async(id:string) => {
+export const declineRequest = async (id: string) => {
     const response = await Axios.patch('/requests/decline/' + id)
+    return response.data
+}
+
+export const postReaction = async (id: number): Promise<IResponse> => {
+    const response = await Axios.post('/posts/react/' + id)
+    return response.data
+}
+
+export const getPostById = async (id: string|number): Promise<IResponse> => {
+    const response = await Axios.get("/posts/" + id)
+    return response.data
+}
+
+export const addComment = async (comment: ICommentPayload,postId:string|number): Promise<IResponse> => {
+    const response = await Axios.post('/posts/comment/' + postId,comment)
     return response.data
 }

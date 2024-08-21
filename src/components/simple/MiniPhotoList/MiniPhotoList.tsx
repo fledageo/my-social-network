@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./MiniPhotoList.module.css"
-import { IPost } from '../../helpers/types'
-import { BASE } from '../../helpers/default'
+import { IPost } from '../../../helpers/types'
+import { BASE } from '../../../helpers/default'
 import { Box } from '@mui/material'
 interface IProps{
     posts:IPost[]

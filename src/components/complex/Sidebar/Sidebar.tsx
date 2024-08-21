@@ -1,33 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from "./Sidebar.module.css"
-import { List, ListItem, ListItemIcon, ListItemText, ListItemButton } from '@mui/material'
+import { List, ListItem, ListItemIcon, ListItemText, ListItemButton, Badge } from '@mui/material'
 import { IoPerson } from "react-icons/io5";
 import { HiOutlinePhoto } from "react-icons/hi2";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import { IoNotificationsSharp } from "react-icons/io5";
-import { IUser } from '../../helpers/types';
+import { IUser } from '../../../helpers/types';
+import { NotificationBar } from '../NotifiModal/NotifiModal';
+import { MdLogout } from "react-icons/md";
+import { logoutUser } from '../../../helpers/api';
 
-
-interface IProps{
-    account:IUser
+interface IProps {
+    account: IUser
 }
 
-export const Sidebar = ({account}:IProps) => {
-
+export const Sidebar = ({ account }: IProps) => {
     const [isOpen, setIsOpen] = useState<Boolean>(false)
+    const [notifiBar, setnotifiBar] = useState<boolean>(false)
     const navigate = useNavigate()
     const toggleSidebar = (state: boolean) => {
         setIsOpen(state)
     }
 
-    
-
-
+    const handleLogout = () => {
+        logoutUser()
+        .then(() => navigate("/login"))
+    }
     return (
         <div
             className={`${styles.sideBar} ${isOpen ? styles.sidebarOpen : ""}`}
-            onMouseOver={() => toggleSidebar(true)}
+            onMouseOver={() => {
+                if(!notifiBar){
+                    toggleSidebar(true)
+                }else{
+                    toggleSidebar(false)
+                }
+            }}
             onMouseLeave={() => toggleSidebar(false)}
         >
 
@@ -44,9 +53,11 @@ export const Sidebar = ({account}:IProps) => {
                         </ListItemButton>
                     </ListItem>
                     <ListItem>
-                        <ListItemButton onClick={() => navigate("/profile/notiflications")}>
+                        <ListItemButton onClick={() => setnotifiBar(true)}>
                             <ListItemIcon className={styles.iconWrapper}>
-                                <IoNotificationsSharp size={30}/>
+                                <Badge badgeContent={0} color="primary">
+                                    <IoNotificationsSharp size={30}/>
+                                </Badge>
                             </ListItemIcon>
                             <ListItemText className={`${styles.textWrapper}`}>
                                 <span className={`${styles.text}  ${isOpen ? styles.textOpen : ""}`}>Notification</span>
@@ -73,9 +84,22 @@ export const Sidebar = ({account}:IProps) => {
                             </ListItemText>
                         </ListItemButton>
                     </ListItem>
+                    <ListItem>
+                        <ListItemButton onClick={handleLogout}>
+                            <ListItemIcon className={styles.iconWrapper}>
+                                <MdLogout size={30} />
+                            </ListItemIcon>
+                            <ListItemText className={`${styles.textWrapper}`}>
+                                <span className={`${styles.text}  ${isOpen ? styles.textOpen : ""}`}>Log out</span>
+                            </ListItemText>
+                        </ListItemButton>
+                    </ListItem>
                 </List>
-            </nav>
 
+            </nav>
+            {
+                notifiBar ? <NotificationBar notifiBar={notifiBar} setnotifiBar={setnotifiBar} account={account}/> : ""
+            }
         </div>
     )
 }

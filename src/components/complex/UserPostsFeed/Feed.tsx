@@ -4,11 +4,11 @@ import { RiImageAddFill } from "react-icons/ri";
 import { MdOutlineNoteAdd } from "react-icons/md";
 import { MdAddReaction } from "react-icons/md";
 import { AddPostModal } from '../addPostModal/AddPostModal';
-import { IPost, IUser } from '../../helpers/types';
-import { handlePostUpload, getAllPosts } from '../../helpers/api'
-import { ShowPost } from '../ShowPost/ShowPost';
+import { IPost, IUser } from '../../../helpers/types';
+import { handlePostUpload, getAllPosts } from '../../../helpers/api'
 import { Button, Divider } from '@mui/material';
-import { BASE, INIT_PROFILE_IMG } from '../../helpers/default'
+import { BASE, INIT_PROFILE_IMG } from '../../../helpers/default'
+import { ShowPost } from '../../simple/ShowPost/ShowPost';
 
 
 interface IProps {

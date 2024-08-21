@@ -8,9 +8,9 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import { TbMessageForward } from "react-icons/tb";
 import { BsPersonFillUp } from "react-icons/bs";
 import { BsPersonFillCheck } from "react-icons/bs";
-
 import { Button } from '@mui/material'
-
+import { CiLock } from "react-icons/ci";
+import { UserPostsList } from '../../../components/complex/UserPostsList/UserPostsList'
 
 export const UserAccount = () => {
     const [userAccount, setUserAccount] = useState<IAccount | null>(null)
@@ -163,8 +163,30 @@ export const UserAccount = () => {
                         </div>
                     </div>
                     <div className={styles.showBlock}>
+                           {
+                                userAccount?.connection.following || userAccount?.isPrivate == 0 
+                                ? <div className={styles.showPostsBlock}>
+                                    <div className={styles.showPostsWrapper}>
+                                        <UserPostsList posts={userAccount.posts}/>
+                                    </div>
+                                    
+                                </div> 
+                                : <>
 
+                                    <div className={styles.privateTextBlock}>
+                                        <div className={styles.privateTextWrapper}>
+                                            <CiLock size={50} className={styles.ProvateIcon}/>
+                                            <span className={styles.ProvateText}>This profile is private</span>
+                                        </div>
+                                    </div>
+
+
+                                </>
+                           } 
                     </div>
+
+                    
+
                 </div>
             </div>
         </>

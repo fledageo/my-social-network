@@ -1,0 +1,29 @@
+.UserPostsList {
+    width: 650px;
+}
+.postBlock{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+    transition: 0.2s;
+}
+.postBlock:hover{
+    transform: scale(1.03);
+}
+.postImg {
+    /* width: 100%; */
+    /* height: 100%; */
+}
+
+.wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    background-color: #F5F5F5;
+    padding: 30px;
+    border-radius: 15px;
+}

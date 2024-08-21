@@ -6,14 +6,21 @@ import { getAllPosts, handleUpload } from '../../../helpers/api';
 import { Box, List, ListItem, ListItemButton, ListItemIcon } from '@mui/material';
 import { MdFileUpload } from "react-icons/md";
 import { TbPhotoSearch } from "react-icons/tb";
-import { Feed } from '../../../components/UserPostsFeed/Feed';
+import { Feed } from '../../../components/complex/UserPostsFeed/Feed';
 import { BASE, INIT_PROFILE_IMG } from '../../../helpers/default';
-import { MiniPhotoList } from '../../../components/MiniPhotoList/MiniPhotoList';
-import { SearchBlock } from '../../../components/SearchBlock/SearchBlock';
+import { MiniPhotoList } from '../../../components/simple/MiniPhotoList/MiniPhotoList';
+import { SearchBlock } from '../../../components/complex/SearchBlock/SearchBlock';
+import { FollowersModal } from '../../../components/complex/FollowersModal/FollowersModal';
+import { FollowingModal } from '../../../components/complex/FollowingModal/FollowingModal';
 
 export const Profile = () => {
     const [imgDropdown, setImgDropdown] = useState<Boolean>(false)
     const [posts, setPosts] = useState<IPost[]>([]);
+
+    const [followersModal,setFollowersModal] = useState<boolean>(false)
+    const [followingModal,setFollowingModal] = useState<boolean>(false)
+    
+
     const navigate = useNavigate()
     const { account, setAccount } = useOutletContext<IContext>();
     const photo = useRef<HTMLInputElement | null>(null);
@@ -40,6 +47,14 @@ export const Profile = () => {
 
     const toggleDropDown = (state: Boolean) => {
         setImgDropdown(state)
+    }
+
+    const toggleFollowersModal = (state:boolean) => {
+        setFollowersModal(state)
+    }
+    
+    const toggleFollowingModal = (state:boolean) => {
+        setFollowingModal(state)
     }
 
 
@@ -86,13 +101,13 @@ export const Profile = () => {
                                 <span>{account.name} {account.surname}</span>
                             </div>
                             <div className={styles.followFollowing}>
-                                <div className={styles.followers}>
+                                <div className={styles.followers} onClick={() => toggleFollowersModal(true)}>
                                     <span className={styles.followText}>followers</span>
-                                    <span className={styles.followCount}>340</span>
+                                    <span className={styles.followCount}>{account.followers.length}</span>
                                 </div>
-                                <div className={styles.following}>
+                                <div className={styles.following} onClick={() => toggleFollowingModal(true)}>
                                     <span className={styles.followText}>following</span>
-                                    <span className={styles.followCount}>340</span>
+                                    <span className={styles.followCount}>{account.following.length}</span>
                                 </div>
                             </div>
                         </div>
@@ -117,6 +132,10 @@ export const Profile = () => {
                             </div>
                         </div>
                     </div>
+
+                    
+                    <FollowersModal isOpen={followersModal} closeModal={toggleFollowersModal} followers={account.followers}/>
+                    <FollowingModal isOpen={followingModal} closeModal={toggleFollowingModal} followings={account.following}/>
                 </div>
             </div>
         </>

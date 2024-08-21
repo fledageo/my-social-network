@@ -1,0 +1,70 @@
+.modalBox{
+    width: 70%;
+    min-width: 700px;
+    min-height: 500px;
+    height: 70%;
+}
+.wrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+.postBlock{
+    width: 65%;
+    overflow: hidden;
+    background-color: #F5EDED;
+    padding: 10px;
+    border-radius: 15px;
+
+}
+.userInfo{
+    height: 15%;
+}
+.imgWrapper{
+    /* height: 75%; */
+    max-height: 75%;
+    overflow: hidden;
+}
+.showInfo{
+    height: 10%;
+
+}
+.ZoomImg{
+    width: 100%;
+}
+.actionsBlock{
+    height: 100%;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #F5EDED;
+    border-radius: 15px;
+    padding: 10px;
+}
+.commentsPart{
+    /* height: 80%; */
+}
+.actionsPart{
+    /* height: 20%; */
+    width: 100%;
+}
+.iconBtn{
+    border: none;
+    background: none;
+    transition: 0.2s;
+}
+.iconBtn:hover{
+    transform: scale(1.2);
+}
+.fieldWrapper{
+    /* height: 70px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sendBtn{
+    margin-left: 10px;
+    cursor: pointer;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./Layout.module.css"
-import { Sidebar } from '../../components/Sidebar/Sidebar';
+import { Sidebar } from '../../components/complex/Sidebar/Sidebar';
 import { useNavigate,Outlet } from 'react-router-dom';
 import { logoutUser, verifyUser } from '../../helpers/api';
 import { IUser } from '../../helpers/types';

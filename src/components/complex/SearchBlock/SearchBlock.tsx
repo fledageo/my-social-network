@@ -2,9 +2,9 @@ import { TextField, InputAdornment,Avatar } from "@mui/material"
 import { IoIosSearch } from "react-icons/io";
 import styles from "./SearchBlock.module.css"
 import { useEffect, useRef, useState } from "react";
-import { IUser } from "../../helpers/types";
-import { searchUsers } from "../../helpers/api";
-import { BASE,INIT_PROFILE_IMG } from "../../helpers/default";
+import { IUser } from "../../../helpers/types";
+import { searchUsers } from "../../../helpers/api";
+import { BASE,INIT_PROFILE_IMG } from "../../../helpers/default";
 import { useNavigate } from "react-router-dom";
 
 

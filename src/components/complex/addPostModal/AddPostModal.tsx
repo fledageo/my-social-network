@@ -1,12 +1,11 @@
 import React, { useRef, useState } from 'react'
 import styles from "./AddPostModal.module.css"
 import { Divider, TextField, Button } from '@mui/material'
-import { IUser } from '../../helpers/types'
-import { BASE, INIT_PROFILE_IMG } from '../../helpers/default'
+import { IUser } from '../../../helpers/types'
+import { BASE,INIT_PROFILE_IMG } from '../../../helpers/default'
 import { RiImageAddFill } from "react-icons/ri";
 import { Modal, Box } from '@mui/material';
-import { UserInfo } from '../UserInfo/UserInfo'
-
+import { UserInfo } from '../../simple/UserInfo/UserInfo'
 interface IProps {
     account: IUser
     newPostModal: boolean

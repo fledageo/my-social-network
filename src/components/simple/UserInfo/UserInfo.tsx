@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./UserInfo.module.css"
-import { IUser } from '../../helpers/types'
-import { BASE, INIT_PROFILE_IMG } from '../../helpers/default'
+import { IUser } from '../../../helpers/types'
+import { BASE,INIT_PROFILE_IMG } from '../../../helpers/default'
 
 interface IProps{
     account:IUser

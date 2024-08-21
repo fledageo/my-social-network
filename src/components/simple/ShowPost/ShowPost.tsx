@@ -1,6 +1,6 @@
 import React from 'react'
-import { IPost, IUser } from '../../helpers/types'
-import { BASE, INIT_PROFILE_IMG } from '../../helpers/default'
+import { IPost,IUser } from '../../../helpers/types'
+import { BASE,INIT_PROFILE_IMG } from '../../../helpers/default'
 import styles from "./ShowPost.module.css"
 import { Box } from '@mui/material'
 import { UserInfo } from '../UserInfo/UserInfo'

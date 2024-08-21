@@ -1,0 +1,8 @@
+.wrapper{
+    background-color: aquamarine;
+    margin-bottom: 10px;
+}
+.info{
+    display: flex;
+    align-items: center;
+}

@@ -92,6 +92,11 @@
 .followers,.following{
     display: flex;
     flex-direction: column;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.followers:hover,.following:hover{
+    transform: scale(1.1);
 }
 .followText{
     font-size: 16px;

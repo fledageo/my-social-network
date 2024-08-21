@@ -49,10 +49,23 @@ export interface IPost {
   title: string;
   picture: string;
   likes: IUser[];
+  isLiked: boolean
+  userId:string
+  comments:IComment[]
 }
+
 
 export interface IChangeLoginData{
   login:string
   password:string
   
+}
+
+export interface ICommentPayload{
+  text:string
+}
+export interface IComment{
+  content:string
+  id:number|string
+  user:IUser
 }
