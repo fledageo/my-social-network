@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from "./Profile.module.css"
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { IContext, IPost } from '../../../helpers/types';
-import { getAllPosts, handleUpload } from '../../../helpers/api';
+import { getAllPosts, handleUpload, uploadCover } from '../../../helpers/api';
 import { Box, List, ListItem, ListItemButton, ListItemIcon } from '@mui/material';
 import { MdFileUpload } from "react-icons/md";
 import { TbPhotoSearch } from "react-icons/tb";
@@ -19,7 +19,7 @@ export const Profile = () => {
 
     const [followersModal,setFollowersModal] = useState<boolean>(false)
     const [followingModal,setFollowingModal] = useState<boolean>(false)
-    
+    const coverRef = useRef<HTMLInputElement | null>(null)
 
     const navigate = useNavigate()
     const { account, setAccount } = useOutletContext<IContext>();
@@ -57,12 +57,29 @@ export const Profile = () => {
         setFollowingModal(state)
     }
 
+    const handleSelectCover = () => {
+        if(coverRef.current){
+            coverRef.current.click()
+        }
+    }
+    const handleCoverUpload = () => {
+        const file = coverRef.current?.files?.[0];
+        if (file) {
+            const form = new FormData();
+            form.append("cover", file);
+            uploadCover(form).then((response) => {
+                setAccount({ ...account, cover: response.payload as string });
+                console.log(response)
+            });
+        }
+    }
+    console.log(account.cover)
 
     return (
         <>
             <div className={styles.container}>
-                <div className={styles.coverSection}>
-
+                <div className={styles.coverSection} onClick={handleSelectCover} style={account.cover ? {background:`url('${BASE + account.cover}')`} : {background:"#7FA1C3"}}>
+                    <input type="file" hidden ref={coverRef} onChange={handleCoverUpload}/>
                 </div>
                 <div className={styles.mainSection}>
                     <div className={styles.block1}>

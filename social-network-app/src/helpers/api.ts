@@ -44,7 +44,7 @@ export const handlePrivacyStatus = async (): Promise<IResponse> => {
     return response.data;
 }
 export const handleChangePassword = async (form: FormData): Promise<IResponse> => {
-    const response = await Axios.post('/update/password', form);
+    const response = await Axios.patch('/update/password', form);
     return response.data;
 }
 
@@ -113,5 +113,10 @@ export const getPostById = async (id: string|number): Promise<IResponse> => {
 
 export const addComment = async (comment: ICommentPayload,postId:string|number): Promise<IResponse> => {
     const response = await Axios.post('/posts/comment/' + postId,comment)
+    return response.data
+}
+
+export const uploadCover = async (form:FormData): Promise<IResponse> => {
+    const response = await Axios.patch('/cover/upload',form)
     return response.data
 }
