@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
 
 app.get('/db/:table?', (req, res) => {
   const {table} = req.params
-  const tables = ['users','session', 'posts','comments', 'likes', 'follows','requests']
+  const tables = ['users','session', 'posts','comments', 'likes', 'follows','requests', 'blocks']
   let columns = []
   let data = []
 

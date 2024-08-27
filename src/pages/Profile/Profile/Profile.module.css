@@ -11,6 +11,10 @@
     background-position: center;
     background-size: auto;
     background-repeat: no-repeat;
+    transition: 0.2s;
+}
+.coverSection:hover{
+    opacity: 0.8;
 }
 .mainSection{
     width: 100%;

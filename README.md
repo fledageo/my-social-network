@@ -1,50 +1,29 @@
-# React + TypeScript + Vite
+# Social Network
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+This is a Small Social Network project built using React, designed to provide a fundamental social networking experience. The app allows users to create profiles, connect with others, and share content in a simple, intuitive interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+User Authentication:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Sign Up: Create a new account with secure authentication.
+- Sign In: Log in to your account to access all features.
 
-- Configure the top-level `parserOptions` property like this:
+User Profiles:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Profile Picture: Upload and update your profile picture to personalize your account.
+- Profile Cover: Customize your profile with a cover photo.
+- Profile Information: Edit and view your personal details.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Post Creation:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- New Post: Share your thoughts by creating new posts with descriptions.
+- Like & Comment: Interact with others by liking posts and leaving comments.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+User Interaction:
+
+- Search Users: Easily search and find other users on the platform.
+- View Profiles: Check out the profiles of other users and see their posts.
+
+

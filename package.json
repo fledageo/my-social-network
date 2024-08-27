@@ -4,9 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-    "start:frontend": "cd ../my-social-network && npm run dev",
-    "start:backend": "cd ../my-social-network/backend && npm start",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -19,7 +16,6 @@
     "@mui/material": "^5.16.7",
     "@mui/styled-engine": "^5.16.6",
     "axios": "^1.7.4",
-    "concurrently": "^8.2.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.2",

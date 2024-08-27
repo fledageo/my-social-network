@@ -7,6 +7,7 @@ import followModel from '../models/follow.js'
 import requestModel from '../models/request.js'
 import { loadUser } from '../lib/helpers.js'
 import likesModel from '../models/likes.js'
+import blockModel from '../models/block.js'
 
 
 class UserController {
@@ -165,17 +166,39 @@ class UserController {
             const amIFollowing = followModel.findOne({ userId: user, follows: id })
             const followsMe = followModel.findOne({ userId: id, follows: user })
             const requested = requestModel.findOne({ userId: user, requests: id })
-            result = result.omit('login', 'password')
 
+            //block
+            const amIBlocked = blockModel.findOne({ user: req.user.id, blocked: result.id })
+            const heBlockedMe = blockModel.findOne({ user: result.id, blocked: req.user.id })
+            
+
+            result = result.omit('login', 'password')
+            result.available = true
             result.connection = {
                 following: Boolean(amIFollowing),
                 followsMe: Boolean(followsMe),
-                requested: Boolean(requested)
+                requested: Boolean(requested),
+                blockedMe: Boolean(heBlockedMe),
+                didIBlock: Boolean(amIBlocked)
             }
-
+            const blockedContent = {
+                id: result.id,
+                name: result.name,
+                surname: result.surname,
+                picture: null,
+                connection: result.connection,
+                followers: [],
+                followings: [],
+                cover: null,
+                posts: [],
+                available: false
+            }
+            if(heBlockedMe){
+                return res.send({status:'ok', payload: blockedContent})
+            }   
             if (!result.isPrivate || result.connection.following) {
-               
-               result.followers = followModel
+
+                result.followers = followModel
                     .findWhere({ follows: result.id })
                     .map(e => e.userId)
                     .map(e => userModel.findOne({ id: e }).omit('login', 'password'))
@@ -186,9 +209,14 @@ class UserController {
 
 
                 result.posts = postModel.findWhere({ userId: id }).map(e => {
-                    e.isLiked = Boolean(likesModel.findOne({userId:req.user.id, postId:e.id}))
+                    e.isLiked = Boolean(likesModel.findOne({ userId: req.user.id, postId: e.id }))
                     return e
                 })
+
+
+                if (amIBlocked ) {
+                    result = blockedContent
+                }
             }
         }
         if (!result) {
@@ -318,6 +346,67 @@ class UserController {
             .map(x => loadUser(x, 'follows'))
 
         return res.send({ status: 'ok', payload: followers })
+    }
+
+    block(req, res) {
+        const me = req.user.id
+        const { id } = req.params
+
+        let payload = { user: me, blocked: id }
+        const found = blockModel.findOne(payload)
+        const him = userModel.findOne({ id })
+        if (found) {
+            blockModel.delete(payload)
+
+            let result = him
+            const amIFollowing = followModel.findOne({ userId: me, follows: id })
+            const followsMe = followModel.findOne({ userId: id, follows: me })
+            const requested = requestModel.findOne({ userId: me, requests: id })
+
+            //block
+            const amIBlocked = blockModel.findOne({ user: req.user.id, blocked: result.id })
+            const heBlockedMe = blockModel.findOne({ user: result.id, blocked: req.user.id })
+
+            if(heBlockedMe){
+                return res.send({status:'error', message:'you are blocked'})
+            }
+
+            result.available = true
+            result.connection = {
+                following: Boolean(amIFollowing),
+                followsMe: Boolean(followsMe),
+                requested: Boolean(requested),
+                amIBlocked:Boolean(heBlockedMe),
+                didIBlock:Boolean(amIBlocked)
+            }
+
+            if (!result.isPrivate || result.connection.following) {
+
+                result.followers = followModel
+                    .findWhere({ follows: result.id })
+                    .map(e => e.userId)
+                    .map(e => userModel.findOne({ id: e }).omit('login', 'password'))
+
+                result.following = followModel
+                    .findWhere({ userId: result.id })
+                    .map(e => e.follows)
+                    .map(e => userModel.findOne({ id: e }).omit('login', 'password'))
+
+
+                result.posts = postModel.findWhere({ userId: id }).map(e => {
+                    e.isLiked = Boolean(likesModel.findOne({ userId: req.user.id, postId: e.id }))
+                    return e
+                })
+
+
+            }
+
+            return res.send({ status: 'ok', message: 'unblocked', payload: result?.omit('login', 'password') })
+        } else {
+            blockModel.insert({ user: me, blocked: id })
+            return res.send({ status: 'ok', message: 'blocked' })
+        }
+
     }
 }
 

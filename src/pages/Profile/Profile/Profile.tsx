@@ -73,7 +73,6 @@ export const Profile = () => {
             });
         }
     }
-    console.log(account.cover)
 
     return (
         <>

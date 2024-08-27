@@ -73,4 +73,14 @@ db.exec(`
         FOREIGN KEY(requests) REFERENCES users(id) ON DELETE CASCADE
     )    
 `)
+
+db.exec(`
+    CREATE TABLE IF NOT EXISTS blocks(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user INTEGER,
+        blocked INTEGER,
+        FOREIGN KEY(user) REFERENCES users(id) ON DELETE CASCADE
+        FOREIGN KEY(blocked) REFERENCES users(id) ON DELETE CASCADE
+    )
+`)
 export default db

@@ -338,6 +338,20 @@ router.delete('/posts/:id', authMiddleware, postController.handleDelete)
  *         description: <code>{status:string, payload:IUser[]}</code>
  */
 router.get('/search/:text',authMiddleware, userController.searchUsers)
+
+/**
+ * @swagger
+ * /block/:id:
+ *   post:
+ *     summary: blocks the user
+ *     description: 
+ *     tags:
+ *       - Resource
+ *     responses:
+ *       200:
+ *         description: <code>{status:string, payload:IUser[]}</code>
+ */
+router.post('/block/:id',authMiddleware, userController.block)
 /**
  * @swagger
  * /account/set:
