@@ -1,0 +1,54 @@
+<style>
+  *{
+    font-family: sans-serif;
+  }
+  body{
+    padding:2rem;
+  }
+  ul li{
+    font-size:24px;
+    line-height: 30px;
+  }
+  table{
+    width:1200px;
+    border-collapse: collapse;
+  }
+  tr, th, table, td{
+    border:1px solid gray;
+  }
+  td, th{
+    padding:5px 20px;
+  }
+
+</style>
+<h1>Database System</h1>
+<ul>
+  <% tables.forEach(function(item) { %>
+      <li>
+          <a href="/db/<%= item %>"><%= item %></a>
+      </li>
+  <% }); %>
+</ul>
+
+<table>
+  <thead>
+      <tr>
+          <% columns.forEach(function(c) { %>
+              <th><%= c %></th>
+          <% }); %>
+          <th>actions</th>
+      </tr>
+  </thead>
+  <tbody>
+      <% data.forEach(function(d) { %>
+          <tr>
+              <% columns.forEach(function(c) { %>
+                  <td><%= d[c] %></td>
+              <% }); %>
+              <td>
+                  <a href="/db/<%=table%>/<%=d.id%>">delete</a>
+              </td>
+          </tr>
+      <% }); %>
+  </tbody>
+</table>
